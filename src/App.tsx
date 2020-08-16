@@ -1,4 +1,4 @@
-
+import React from 'react';
 import './App.css';
 
 const moviesData = [
@@ -6,13 +6,19 @@ const moviesData = [
 ]
 
 
+function AppFinal() {
+  return <div>
+      <MovieList cardsDataList={moviesData}/>
+          </div>  
+}
+
+
 interface IpropsMovieCardSkin{      /// here we making global props to our Comp. card skin
   Poster: string,
   Rank: number,
   Name: string,
   Year: string,
-  ImdbID: string,
-  Type: string,
+  Type: string
 
 
 }
@@ -20,7 +26,8 @@ interface IpropsMovieCardSkin{      /// here we making global props to our Comp.
 
 
 function DrawMovieCard (prop:IpropsMovieCardSkin){ ////now we make our Comp. the "hard" basis to draw. with using bootstrap
-  return (<div className ="card" style="width:18rem;">
+  return (<div className="container">
+          <div className ="card col-lg-3 col-md-6 col-sm-12">
             <img src = {prop.Poster} className="card-img-top" height="350px" width="350px"/>
               <div className="card-body">
                 <h4 className="card-title">Movie Name:{prop.Name}</h4>
@@ -28,8 +35,20 @@ function DrawMovieCard (prop:IpropsMovieCardSkin){ ////now we make our Comp. the
                     <p className="card-text">Type:{prop.Type}</p>
                     <p className="card-text">rank:{prop.Rank}</p>
               </div>
-            
+              </div>
           </div>
           )}
 
-          
+
+
+
+
+          interface IpropsMovieList{cardsDataList:Array<IpropsMovieCardSkin>} // here we making another props
+
+        function MovieList(cardsArray:IpropsMovieList){
+          const moviesDataArrayElement:JSX.Element[]=cardsArray.cardsDataList.map(element=><DrawMovieCard{...element}></DrawMovieCard>)
+          return <div>
+            {moviesDataArrayElement}</div>
+        }
+        
+export default AppFinal;
