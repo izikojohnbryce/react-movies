@@ -18,3 +18,18 @@ interface IpropsMovieCardSkin{      /// here we making global props to our Comp.
 }
 
 
+
+function DrawMovieCard (prop:IpropsMovieCardSkin){ ////now we make our Comp. the "hard" basis to draw. with using bootstrap
+  return (<div className ="card" style="width:18rem;">
+            <img src = {prop.Poster} className="card-img-top" height="350px" width="350px"/>
+              <div className="card-body">
+                <h4 className="card-title">Movie Name:{prop.Name}</h4>
+                    <p className="card-text">Year Published:{prop.Year}</p>
+                    <p className="card-text">Type:{prop.Type}</p>
+                    <p className="card-text">rank:{prop.Rank}</p>
+              </div>
+            
+          </div>
+          )}
+
+          
